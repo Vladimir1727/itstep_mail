@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $email = \Auth::user()->email;
+        return view('home',['userEmail'=>$email]);
+    }
+
+    public function logout()
+    {
+        \Auth::logout();
+        return view('auth/login');
     }
 }

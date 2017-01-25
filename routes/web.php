@@ -29,5 +29,7 @@
 Route::get('test/{id}', 'TestController@index');
 Route::get('photo-test', 'Photos\TestController@index');
 Route::get('home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 Auth::routes();
+Route::get('logout', 'HomeController@logout');
 
