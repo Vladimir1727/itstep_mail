@@ -26,4 +26,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function subscribers(){//добавляет связь
+        return $this->hasMany('itstep\Models\Subscriber');//создаёт связь "один ко многим"
+    }
 }
