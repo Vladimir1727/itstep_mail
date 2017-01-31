@@ -29,9 +29,8 @@
 							</form>
   						</td>
   						<td>
-  							<form action="{{ url('/subscribers',$l['id'])}}" method="post">
-  								<input type="hidden" name="_method" value="put">
-  								<input type="submit" value="Update">
+  							<form action="{{ url('/subscribers/'.$l['id'].'/edit')}}" method="get">
+  								<input type="submit" value="Edit">
   								{{ csrf_field() }}
 							</form>
   						</td>

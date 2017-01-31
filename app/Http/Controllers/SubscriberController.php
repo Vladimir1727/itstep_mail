@@ -39,6 +39,7 @@ class SubscriberController extends Controller
     {
         //добавляет подписчика
         $this->validator($request->all())->validate();
+
         SubscriberModel::create([
             'user_id'=>\Auth::user()->id,
             'first_name'=>$request->get('first_name'),
@@ -75,7 +76,10 @@ class SubscriberController extends Controller
     public function edit($id)
     {
         //
-        echo "edit ".$id;
+       
+
+        $Subscriber=SubscriberModel::find($id)->toArray();
+        return view('subscribers.edit',$Subscriber);
 
     }
 
@@ -88,8 +92,13 @@ class SubscriberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        echo "update ".$id;
+        
+        $Subscriber=SubscriberModel::find($id);
+        echo $request->get('first_name');
+        $Subscriber['first_name']=$request->get('first_name');
+        $Subscriber['last_name']=$request->get('last_name');
+        $Subscriber['email']=$request->get('email');
+        $Subscriber->save();
         $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
         return view('subscribers.list',$data);
     }
@@ -103,11 +112,11 @@ class SubscriberController extends Controller
     public function destroy($id)
     {
         //
-        $Subscriber=SubscriberModel::where('id',$id)->get();
+        $Subscriber=SubscriberModel::find($id);
         /*$Subscriber[0]['deleted_at']=date('Y-m-d H:i:s',time());
         $Subscriber[0]->save();
         */
-        $Subscriber[0]->delete();
+        $Subscriber->delete();
         $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
         return view('subscribers.list',$data);
     }
