@@ -4,6 +4,7 @@ namespace itstep\Http\Controllers;
 
 use Illuminate\Http\Request;
 use itstep\Models\Subscriber as SubscriberModel;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SubscriberController extends Controller
 {
@@ -44,6 +45,8 @@ class SubscriberController extends Controller
             'last_name'=>$request->get('last_name'),
             'email'=>$request->get('email')
         ]);
+        $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
+        return view('subscribers.list',$data);
     }
 
     public function lists(){
@@ -60,7 +63,7 @@ class SubscriberController extends Controller
     public function show($id)
     {
         //
-        echo "show ".$id;
+
     }
 
     /**
@@ -73,6 +76,7 @@ class SubscriberController extends Controller
     {
         //
         echo "edit ".$id;
+
     }
 
     /**
@@ -86,6 +90,8 @@ class SubscriberController extends Controller
     {
         //
         echo "update ".$id;
+        $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
+        return view('subscribers.list',$data);
     }
 
     /**
@@ -97,7 +103,13 @@ class SubscriberController extends Controller
     public function destroy($id)
     {
         //
-        echo "destroy ".$id;
+        $Subscriber=SubscriberModel::where('id',$id)->get();
+        /*$Subscriber[0]['deleted_at']=date('Y-m-d H:i:s',time());
+        $Subscriber[0]->save();
+        */
+        $Subscriber[0]->delete();
+        $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
+        return view('subscribers.list',$data);
     }
 
     protected function validator(array $data){//ручной  валидотор
