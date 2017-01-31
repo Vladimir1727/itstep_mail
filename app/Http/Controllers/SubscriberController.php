@@ -46,6 +46,11 @@ class SubscriberController extends Controller
         ]);
     }
 
+    public function lists(){
+        $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
+        return view('subscribers.list',$data);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -55,6 +60,7 @@ class SubscriberController extends Controller
     public function show($id)
     {
         //
+        echo "show ".$id;
     }
 
     /**
@@ -66,6 +72,7 @@ class SubscriberController extends Controller
     public function edit($id)
     {
         //
+        echo "edit ".$id;
     }
 
     /**
@@ -78,6 +85,7 @@ class SubscriberController extends Controller
     public function update(Request $request, $id)
     {
         //
+        echo "update ".$id;
     }
 
     /**
@@ -89,6 +97,7 @@ class SubscriberController extends Controller
     public function destroy($id)
     {
         //
+        echo "destroy ".$id;
     }
 
     protected function validator(array $data){//ручной  валидотор

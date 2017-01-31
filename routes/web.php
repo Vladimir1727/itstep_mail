@@ -32,5 +32,6 @@ Auth::routes();
 Route::get('logout', 'HomeController@logout');
 Route::get('/model', 'HomeController@model');
 Route::group(['middleware'=>'auth'],function(){
-	Route::resource('subscribers', 'SubscriberController');//добавляет группы роутеров для SubscriberController
+Route::resource('subscribers', 'SubscriberController');//добавляет группы роутеров для SubscriberController
+Route::get('subscriber/list', 'SubscriberController@lists');
 });
