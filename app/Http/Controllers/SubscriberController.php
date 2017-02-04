@@ -38,6 +38,10 @@ class SubscriberController extends Controller
     public function store(Request $request)
     {
         //добавляет подписчика
+        //echo $request->has('first_name');//проверка существования параметра
+        //print_r($request->only(['first_name']));//возвращает выбранные поля
+        //print_r($request->except(['first_name']));//возвращает всё кроме выбранного поля
+        
         $this->validator($request->all())->validate();
 
         SubscriberModel::create([

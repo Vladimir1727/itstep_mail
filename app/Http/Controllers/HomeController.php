@@ -58,8 +58,10 @@ class HomeController extends Controller
         //echo '<pre>'.print_R(Subscriber::where('first_name', 'John')->get()->toArray(),true).'</pre>';//восвращает массив
         //echo Subscriber::where('first_name', 'John')->toSql();//возвращает в каком виде отправляется запрос
         //Subscriber::find(3)->delete();//удаляет запись
-        echo '<pre>';
-        print_r(User::find(1)->subscribers()->get()->toArray());//показывает связи
-        echo '</pre>';
+        echo '<pre>'.
+        print_r(Subscriber::onlyTrashed()->get(),true)//показывает только удалённые
+        .'</pre>';
+        Subscriber::onlyTrashed()->find(4)->restore();//восстанавливает
+        // ->forceDelete()  полное удаление
     }
 }
