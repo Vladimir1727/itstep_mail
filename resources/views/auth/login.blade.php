@@ -38,26 +38,21 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-5 col-md-offset-5 text-center">
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
+                               
                             </div>
+                        </div>
+                         
+                        <div class="col-md-5 col-md-offset-5 text-center">
+                            <a class="btn btn-link" href="{{ url('/register') }}">
+                                    Registration
+                            </a>
                         </div>
                     </form>
                 </div>
