@@ -7,13 +7,13 @@
    <div class="row">
        <div class="col-md-8 col-md-offset-2">
            <div class="panel panel-default">
-               <div class="panel-heading">Subscriber Add New</div>
+               <div class="panel-heading">{{trans('subscribers.addnew')}}</div>
                <div class="panel-body">
 			   
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/subscribers') }}">
 						{{ csrf_field() }}
 						<div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-						   <label for="first_name" class="col-md-4 control-label">First name</label>
+						   <label for="first_name" class="col-md-4 control-label">{{trans('subscribers.firstname')}}</label>
 
 						   <div class="col-md-6">
 							   <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
@@ -27,7 +27,7 @@
 						</div>
 						
 						<div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-						   <label for="last_name" class="col-md-4 control-label">Last Name</label>
+						   <label for="last_name" class="col-md-4 control-label">{{trans('subscribers.lastname')}}</label>
 
 						   <div class="col-md-6">
 							   <input id="last_name" type="text" class="form-control" name="last_name" required>
@@ -40,7 +40,7 @@
 						   </div>
 						</div>
 						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-						   <label for="last_name" class="col-md-4 control-label">E-Mail Address</label>
+						   <label for="last_name" class="col-md-4 control-label">E-Mail {{trans('subscribers.address')}}</label>
 
 						   <div class="col-md-6">
 							   <input id="email" type="email" class="form-control" name="email" required value="{{ old('email') }}">
@@ -55,7 +55,7 @@
 						<div class="form-group">
 						   <div class="col-md-8 col-md-offset-4">
 							   <button type="submit" class="btn btn-primary">
-								   Add
+								   {{trans('subscribers.add')}}
 							   </button>
 						   </div>
 						</div>

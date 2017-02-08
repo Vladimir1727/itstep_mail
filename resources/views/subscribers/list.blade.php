@@ -7,8 +7,8 @@
 		@include('subscribers.menu')
 	</div>
 	<div class="col-md-9">
-		<h1>Subscribers</h1>
-		<a href="{{ url('/subscribers/create') }}" class="btn btn-default pull-right">Add new</a>
+		<h1>{{trans('subscribers.title')}}</h1>
+		<a href="{{ url('/subscribers/create') }}" class="btn btn-default pull-right">{{trans('subscribers.add')}}</a>
 		<table class="table table-bordered">
 			<tbody>
 				@foreach ($list as $l)
@@ -24,13 +24,13 @@
   						<td>
 							<form action="{{ url('/subscribers',$l['id'])}}" method="post">
   								<input type="hidden" name="_method" value="delete">
-  								<input type="submit" value="Delete">
+  								<input type="submit" value="{{trans('subscribers.delete')}}">
   								{{ csrf_field() }}
 							</form>
   						</td>
   						<td>
   							<form action="{{ url('/subscribers/'.$l['id'].'/edit')}}" method="get">
-  								<input type="submit" value="Edit">
+  								<input type="submit" value="{{trans('subscribers.edit')}}">
   								{{ csrf_field() }}
 							</form>
   						</td>
@@ -39,7 +39,7 @@
 			</tbody>
 			<thead>
 				<tr>
-					<td>Name</td>
+					<td>{{trans('subscribers.name')}}</td>
 					<td>E-mail</td>
 					<td></td>
 					<td></td>

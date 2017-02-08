@@ -45,24 +45,43 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @if (Auth::user())
-                            <li><a href="{{ url('/subscriber/list') }}">Subscriber List</a></li>
-                            <li><a href="{{ url('/lists') }}">Lists</a></li>
+                            <li><a href="{{ url('/subscriber/list') }}">{{trans('app.subscribers')}}</a></li>
+                            <li><a href="{{ url('/lists') }}">{{trans('app.lists')}}</a></li>
                         @endif
                         &nbsp;
-                    </ul>
+                                            
 
+                    </ul>
+    
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form method="POST" action="{{URL::route('language-chooser')}}" {{\App::isLocale('en') ? ' class=hidden':''}}>
+                                {{csrf_field()}}
+                                <input type="hidden" name="locale" value="en">
+                                <input type="submit" value="EN" class="btn btn-default btn-xs">
+                            </form>
+                            <form method="POST" action="{{URL::route('language-chooser')}}" {{\App::isLocale('ru') ? ' class=hidden':''}}>
+                                {{csrf_field()}}
+                                <input type="hidden" name="locale" value="ru">
+                                <input type="submit" value="RU"  class="btn btn-default btn-xs">
+                            </form>
+                            <form method="POST" action="{{URL::route('language-chooser')}}" {{\App::isLocale('ua') ? ' class=hidden':''}}>
+                                {{csrf_field()}}
+                                <input type="hidden" name="locale" value="ua">
+                                <input type="submit" value="UA" class="btn btn-default btn-xs">
+                            </form>
+                        </li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/login') }}">{{trans('app.login')}}</a></li>
+                            <li><a href="{{ url('/register') }}">{{trans('app.register')}}</a></li>
                         @else
                             
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->email }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -70,7 +89,7 @@
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            {{trans('app.logout')}}
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
