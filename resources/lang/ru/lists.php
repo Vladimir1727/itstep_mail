@@ -12,4 +12,5 @@ return [
     'mess_update' => 'успешно изменён',
     'mess_delete' => 'успешно удален',
     'mess_create' => 'успешно создан',
+    'subscriber'=>'Подписчики',
 ];

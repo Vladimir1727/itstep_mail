@@ -12,4 +12,5 @@ return [
     'mess_update' => 'successfuly updated',
     'mess_delete' => 'successfuly deleted',
     'mess_create' => 'successfuly created',
+    'subscriber'=>'Subscribers',
 ];

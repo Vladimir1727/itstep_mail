@@ -48,7 +48,7 @@
 									{{csrf_field()}}
 									{{method_field('get')}}
 									<button class="btn btn-info">
-										subscribers
+										{{trans('lists.subscriber')}}
 									</button>
 								</form>
 							</td>
