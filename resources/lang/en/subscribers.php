@@ -11,4 +11,5 @@ return [
     'lastname'=> "Last name",
     'address'=> "address",
     'addnew'=> "Add new subscriber",
+    'update'=> "Update",
 ];

@@ -26,7 +26,7 @@ class SubscriberController extends Controller
     public function create()
     {
         //вызывает форму для добавления
-        return view('subscribers.create');
+        return view('subscribers.create',['subscriber'=>new SubscriberModel()]);
     }
 
     /**
@@ -80,11 +80,8 @@ class SubscriberController extends Controller
     public function edit($id)
     {
         //
-       
-
-        $Subscriber=SubscriberModel::find($id)->toArray();
-        return view('subscribers.edit',$Subscriber);
-
+        $Subscriber=SubscriberModel::findOrFail($id);
+        return view('subscribers.create',['subscriber'=>$Subscriber]);
     }
 
     /**

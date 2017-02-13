@@ -30,4 +30,9 @@ class User extends Authenticatable
     public function subscribers(){//добавляет связь
         return $this->hasMany('itstep\Models\Subscriber');//создаёт связь "один ко многим"
     }
+
+    public function lists(){
+        return $this->hasMany('itstep\Models\ListModel');
+    }
+
 }

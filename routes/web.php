@@ -25,7 +25,7 @@
     return $id;
 	});
 });*/
-
+Route::get('test', 'TestController@index');
 Route::get('home', 'HomeController@index')->middleware('locale');
 Route::get('/', 'HomeController@index')->middleware('locale');
 Auth::routes();
@@ -43,6 +43,8 @@ Route::group(['middleware'=>'auth'],function(){
 		'as'=>'language-chooser',
 		'uses'=>'LanguageController@chooser'
 		))->middleware('locale');
+	Route::get('/send-email','SendController@form');
+	Route::post('/send-email','SendController@send');
 });
 
 

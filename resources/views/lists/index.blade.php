@@ -37,7 +37,14 @@
 								</div>
 							</td>
 							<td>
-								<form action="{{url('/lists',$list->id)}}" method="POST">
+								<form action="{{url('/lists',[$list->id,'edit'])}}" method="post">
+									{{csrf_field()}}
+									{{method_field('GET')}}
+									<button class="btn btn-success">{{trans('lists.update')}}</button>
+								</form>
+							</td>
+							<td>
+								<form action="{{url('/lists',[$list->id])}}" method="POST">
 									{{csrf_field()}}
 									{{method_field('DELETE')}}
 									<button class="btn btn-danger">
@@ -45,12 +52,13 @@
 									</button>
 								</form>
 							</td>
+
 						</tr>
 				   @endforeach
 				   <tbody>
 				   </tbody>
 			</table>
-
+			{{$lists->links()}}
        </div>
    </div>
 </div>

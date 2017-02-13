@@ -4,6 +4,7 @@ namespace itstep\Http\Controllers;
 
 use Illuminate\Http\Request;
 use itstep\Models\ListModel;
+use itstep\User as UserModel;
 use itstep\Http\Requests\Lists\Create as CreateRequest;//подключаем запрос вручную
 
 class ListController extends Controller
@@ -16,7 +17,8 @@ class ListController extends Controller
     public function index()
     {
         //
-        return view('lists.index',['lists'=>ListModel::all()]);
+        $lists=UserModel::find(\Auth::user()->id)->lists()->paginate(2);
+        return view('lists.index',['lists'=>$lists]);
     }
 
     /**
@@ -27,7 +29,7 @@ class ListController extends Controller
     public function create()
     {
         //
-        return view('lists.create');
+        return view('lists.create',['list'=>new ListModel()]);
     }
 
     /**
@@ -43,6 +45,7 @@ class ListController extends Controller
             'user_id'=>\Auth::user()->id,
             'name'=>$request->get('name')
             ]);
+        //$mess=\LanguageController::chooser();
         return redirect('/lists')->with(['flash_message'=>
         'List '.$list->name.' successfulle created']);
     }
@@ -67,6 +70,8 @@ class ListController extends Controller
     public function edit($id)
     {
         //
+        $list=ListModel::findOrFail($id);
+        return view('lists.create',['list'=>$list]);
     }
 
     /**
@@ -79,6 +84,13 @@ class ListController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $list=ListModel::findOrFail($id);
+        $list->fill($request->only([
+            'name'
+            ]));
+        $list->save();
+        $up=\Lang::get('lists.update');//перевод сообщений!
+        return redirect('/lists')->with(['flash_message'=>'List '.$list->name.' successfully '.$up]);
     }
 
     /**
@@ -87,10 +99,9 @@ class ListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ListModel $list)
     {
         //
-        $list=ListModel::findOrFail($id);
         $list->delete();
         return redirect()->back()->with(['flash_message'=>
         'List '.$list->name.' successfulle deleted']);
