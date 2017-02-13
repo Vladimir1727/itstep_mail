@@ -5,6 +5,7 @@ namespace itstep\Http\Controllers;
 use Illuminate\Http\Request;
 use itstep\Models\ListModel;
 use itstep\User as UserModel;
+use itstep\Models\Subscriber as SubscriberModel;
 use itstep\Http\Requests\Lists\Create as CreateRequest;//подключаем запрос вручную
 
 class ListController extends Controller
@@ -17,7 +18,7 @@ class ListController extends Controller
     public function index()
     {
         //
-        $lists=UserModel::find(\Auth::user()->id)->lists()->paginate(2);
+        $lists=UserModel::find(\Auth::user()->id)->lists()->paginate(10);
         return view('lists.index',['lists'=>$lists]);
     }
 
@@ -47,7 +48,7 @@ class ListController extends Controller
             ]);
         //$mess=\LanguageController::chooser();
         return redirect('/lists')->with(['flash_message'=>
-        'List '.$list->name.' successfulle created']);
+        'List '.$list->name.' '.\Lang::get('lists.mess_create')]);
     }
 
     /**
@@ -59,6 +60,25 @@ class ListController extends Controller
     public function show($id)
     {
         //
+        $list=ListModel::findOrFail($id);
+        $subscribers=SubscriberModel::find(\Auth::user()->id)->paginate(5);
+        $list_subscribers=$list->subscribers()->get();
+        
+        return view('lists.show',['subscribers'=>$subscribers,'list'=>$list,'list_subscribers'=>$list_subscribers]);
+    }
+
+    public function addsubscriber(Request $request){
+        $subscriber=SubscriberModel::findOrFail($request->subscriber_id);
+        $list=ListModel::findOrFail($request->list_id);
+        if (null ==($list->subscribers()->find($request->subscriber_id)))
+            $list->subscribers()->attach($request->subscriber_id);
+        return redirect()->back();
+    }
+
+    public function delsubscriber(Request $request){
+        $list=ListModel::findOrFail($request->list_id);
+        $list->subscribers()->detach($request->subscriber_id);
+        return redirect()->back();   
     }
 
     /**
@@ -89,8 +109,8 @@ class ListController extends Controller
             'name'
             ]));
         $list->save();
-        $up=\Lang::get('lists.update');//перевод сообщений!
-        return redirect('/lists')->with(['flash_message'=>'List '.$list->name.' successfully '.$up]);
+        $update=\Lang::get('lists.mess_update');//перевод сообщений!
+        return redirect('/lists')->with(['flash_message'=>'List '.$list->name.' '.$update]);
     }
 
     /**
@@ -104,6 +124,6 @@ class ListController extends Controller
         //
         $list->delete();
         return redirect()->back()->with(['flash_message'=>
-        'List '.$list->name.' successfulle deleted']);
+        'List '.$list->name.' '.\Lang::get('lists.mess_delete')]);
     }
 }

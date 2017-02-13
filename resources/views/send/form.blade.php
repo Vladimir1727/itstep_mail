@@ -6,12 +6,12 @@
        <div class="row">
            <div class="col-md-8 col-md-offset-2">
                <div class="panel panel-default">
-                   <div class="panel-heading">Send message</div>
+                   <div class="panel-heading">{{trans('send.title')}}</div>
                    <div class="panel-body">
                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/send-email') }}">
                                {{csrf_field()}}
                                <div class="form-group{{ $errors->has('to') ? ' has-error' : '' }}">
-                                   <label for="to" class="col-md-4 control-label">to</label>
+                                   <label for="to" class="col-md-4 control-label">{{trans('send.to')}}</label>
 
                                    <div class="col-md-6">
                                        <input id="name" type="email" class="form-control" name="to" value="{{ old('to') }}" required autofocus>
@@ -24,7 +24,7 @@
                                    </div>
                                </div>
                                <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
-                                   <label for="subject" class="col-md-4 control-label">Subject</label>
+                                   <label for="subject" class="col-md-4 control-label">{{trans('send.subject')}}</label>
 
                                    <div class="col-md-6">
                                        <input id="subject" type="text" class="form-control" name="subject" value="{{ old('subject') }}" required autofocus>
@@ -37,7 +37,7 @@
                                    </div>
                                </div>
                                <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
-                                   <label for="message" class="col-md-4 control-label">Message</label>
+                                   <label for="message" class="col-md-4 control-label">{{trans('send.message')}}</label>
 
                                    <div class="col-md-6">
                                        <textarea id="message" type="text" class="form-control" name="message" value="{{ old('message') }}" required autofocus ></textarea>
@@ -52,7 +52,7 @@
                                <div class="form-group">
                                    <div class="col-md-8 col-md-offset-4">
                                        <button type="submit" class="btn btn-primary">
-                                           {{'Send'}}
+                                           {{trans('send.button')}}
                                        </button>
                                    </div>
                                </div>

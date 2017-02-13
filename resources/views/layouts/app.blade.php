@@ -47,7 +47,7 @@
                         @if (Auth::user())
                             <li><a href="{{ url('/subscriber/list') }}">{{trans('app.subscribers')}}</a></li>
                             <li><a href="{{ url('/lists') }}">{{trans('app.lists')}}</a></li>
-                            <li><a href="{{url('/send-email')}}">Send e-mail</a></li>
+                            <li><a href="{{url('/send-email')}}">{{trans('app.send')}} e-mail</a></li>
                         @endif
                         &nbsp;
                                             

@@ -30,7 +30,7 @@ Route::get('home', 'HomeController@index')->middleware('locale');
 Route::get('/', 'HomeController@index')->middleware('locale');
 Auth::routes();
 
-Route::get('logout', 'HomeController@logout')->middleware('locale');
+Route::get('logout', 'HomeController@logout');
 
 Route::get('/model', 'HomeController@model')->middleware('locale');
 Route::group(['middleware'=>'auth'],function(){
@@ -43,8 +43,10 @@ Route::group(['middleware'=>'auth'],function(){
 		'as'=>'language-chooser',
 		'uses'=>'LanguageController@chooser'
 		))->middleware('locale');
-	Route::get('/send-email','SendController@form');
+	Route::get('/send-email','SendController@form')->middleware('locale');
 	Route::post('/send-email','SendController@send');
+	Route::post('/lists/addsubscriber','ListController@addsubscriber');
+	Route::post('/lists/delsubscriber','ListController@delsubscriber');
 });
 
 

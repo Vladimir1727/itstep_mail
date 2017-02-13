@@ -6,4 +6,5 @@ return [
     'logout'=>'Logout',
     'login'=>'Login',
     'register'=>'Register',
+    'send'=>'Send',
 ];

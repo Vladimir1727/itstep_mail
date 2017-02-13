@@ -44,6 +44,15 @@
 								</form>
 							</td>
 							<td>
+								<form action="{{url('/lists',[$list->id])}}" method="post">
+									{{csrf_field()}}
+									{{method_field('get')}}
+									<button class="btn btn-info">
+										subscribers
+									</button>
+								</form>
+							</td>
+							<td>
 								<form action="{{url('/lists',[$list->id])}}" method="POST">
 									{{csrf_field()}}
 									{{method_field('DELETE')}}
