@@ -7,4 +7,5 @@ return [
     'login'=>'Login',
     'register'=>'Register',
     'send'=>'Send',
+    'settings'=>'Settings',
 ];

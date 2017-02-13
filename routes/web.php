@@ -47,6 +47,8 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('/send-email','SendController@send');
 	Route::post('/lists/addsubscriber','ListController@addsubscriber');
 	Route::post('/lists/delsubscriber','ListController@delsubscriber');
+	Route::get('/settings','SendController@showsettings')->middleware('locale');
+	Route::post('/setsettings','SendController@setsettings')->middleware('locale');
 });
 
 

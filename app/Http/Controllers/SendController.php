@@ -31,4 +31,12 @@ class SendController extends Controller
     	\Mail::to($request->get('to'))->send($mail);
 
     }
+
+    public function showsettings(){
+        return view('send.settings');
+    }
+
+    public function setsettings(Request $request){
+        echo "settings=".$request->type;
+    }
 }

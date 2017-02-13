@@ -6,5 +6,6 @@ return [
     'subject'=>'Тема',
     'message'=>'Сообщение',
     'button'=>'Послать',
-
+    'settings'=>'Настройки',
+    'type'=>'Тип',
 ];
