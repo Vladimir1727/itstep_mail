@@ -5,6 +5,7 @@ namespace itstep\Http\Controllers;
 use Illuminate\Http\Request;
 use itstep\Models\Subscriber as SubscriberModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use itstep\Http\Requests\Subscribers\Create as CreateRequest;
 
 class SubscriberController extends Controller
 {
@@ -16,6 +17,8 @@ class SubscriberController extends Controller
     public function index()
     {
         //
+        $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
+        return view('subscribers.list',$data);
     }
 
     /**
@@ -35,7 +38,7 @@ class SubscriberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
         //добавляет подписчика
         //echo $request->has('first_name');//проверка существования параметра
@@ -54,10 +57,10 @@ class SubscriberController extends Controller
         return view('subscribers.list',$data);
     }
 
-    public function lists(){
+    /*public function lists(){
         $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
         return view('subscribers.list',$data);
-    }
+    }/*
 
     /**
      * Display the specified resource.
