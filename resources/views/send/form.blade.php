@@ -10,11 +10,15 @@
                    <div class="panel-body">
                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/send-email') }}">
                                {{csrf_field()}}
-                               <div class="form-group{{ $errors->has('to') ? ' has-error' : '' }}">
-                                   <label for="to" class="col-md-4 control-label">{{trans('send.to')}}</label>
+                               <div class="form-group{{ $errors->has('list_id') ? ' has-error' : '' }}">
+                                   <label for="list_id" class="col-md-4 control-label">{{trans('lists.list')}}</label>
 
                                    <div class="col-md-6">
-                                       <input id="name" type="email" class="form-control" name="to" value="{{ old('to') }}" required autofocus>
+                                       <select class="form-control" name="list_id">
+                                         @foreach ($lists as $list)
+                                          <option value="{{$list->id}}">{{$list->name}}</option>
+                                          @endforeach
+                                       </select>
 
                                        @if ($errors->has('to'))
                                            <span class="help-block">

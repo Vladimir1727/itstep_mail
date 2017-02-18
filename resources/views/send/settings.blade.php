@@ -11,9 +11,9 @@
           <div class="input-group">
             <label for="type"  class="input-group-addon">{{trans('send.type')}}</label>
             <select name="type" id="type" class="form-control">
-              <option value="PHP">PHP</option>
-              <option value="SMTP">SMTP</option>
-              <option value="Mandrill">Mandrill</option>
+              @foreach ($types as $type)
+                <option value="{{$type->id}}">{{$type->type}}</option>
+              @endforeach
             </select>
           </div>
         </div>

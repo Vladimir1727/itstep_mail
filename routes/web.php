@@ -35,7 +35,7 @@ Route::get('logout', 'HomeController@logout');
 Route::get('/model', 'HomeController@model')->middleware('locale');
 Route::group(['middleware'=>'auth'],function(){
 	Route::resource('subscribers', 'SubscriberController');//добавляет группы роутеров для SubscriberController
-	Route::get('subscriber/list', 'SubscriberController@lists')->middleware('locale');
+	Route::get('subscriber/list', 'SubscriberController@index')->middleware('locale');
 	Route::get('lists', 'ListController@index')->middleware('locale');
 	Route::resource('lists','ListController');
 	Route::post('language',array(
