@@ -11,20 +11,6 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
-/*Route::get('users/{id}', function ($id) {
-	//передача данных через адрес
-    return $id;
-});*/
-
-/*Route::group(array('prefix'=>'users'), function () {
-	Route::get('/{id}', function ($id){
-    return $id;
-	});
-});*/
 Route::get('test', 'TestController@index');
 Route::get('home', 'HomeController@index')->middleware('locale');
 Route::get('/', 'HomeController@index')->middleware('locale');

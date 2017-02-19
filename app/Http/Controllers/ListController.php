@@ -46,7 +46,6 @@ class ListController extends Controller
             'user_id'=>\Auth::user()->id,
             'name'=>$request->get('name')
             ]);
-        //$mess=\LanguageController::chooser();
         return redirect('/lists')->with(['flash_message'=>
         'List '.$list->name.' '.\Lang::get('lists.mess_create')]);
     }

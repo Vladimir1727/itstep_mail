@@ -54,7 +54,7 @@
 						   </div>
 						</div>
 						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-						   <label for="last_name" class="col-md-4 control-label">E-Mail {{trans('subscribers.address')}}</label>
+						   <label for="email" class="col-md-4 control-label">E-Mail {{trans('subscribers.address')}}</label>
 
 						   <div class="col-md-6">
 							   <input id="email" type="email" class="form-control" name="email" required value="{{ old('email',$subscriber->email) }}">

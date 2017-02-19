@@ -9,11 +9,7 @@ use itstep\Http\Requests\Subscribers\Create as CreateRequest;
 
 class SubscriberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
@@ -40,13 +36,6 @@ class SubscriberController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        //добавляет подписчика
-        //echo $request->has('first_name');//проверка существования параметра
-        //print_r($request->only(['first_name']));//возвращает выбранные поля
-        //print_r($request->except(['first_name']));//возвращает всё кроме выбранного поля
-        
-        /*$this->validator($request->all())->validate();*/
-
         SubscriberModel::create([
             'user_id'=>\Auth::user()->id,
             'first_name'=>$request->get('first_name'),
@@ -57,13 +46,8 @@ class SubscriberController extends Controller
         return view('subscribers.list',$data);
     }
 
-    /*public function lists(){
-        $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
-        return view('subscribers.list',$data);
-    }/*
 
-    /**
-     * Display the specified resource.
+     /** Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -116,19 +100,8 @@ class SubscriberController extends Controller
     {
         //
         $Subscriber=SubscriberModel::find($id);
-        /*$Subscriber[0]['deleted_at']=date('Y-m-d H:i:s',time());
-        $Subscriber[0]->save();
-        */
         $Subscriber->delete();
         $data['list']=SubscriberModel::where('user_id',\Auth::user()->id)->get()->toArray();
         return view('subscribers.list',$data);
     }
-
-    /*protected function validator(array $data){//ручной  валидотор
-        return \Validator::make($data,[
-            'first_name'=>'required|max:128|min:2',
-            'last_name'=>'required|max:128|min:2',
-            'email'=>'required|email|max:256'
-        ]);
-    }*/
 }

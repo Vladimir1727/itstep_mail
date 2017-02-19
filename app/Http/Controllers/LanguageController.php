@@ -9,7 +9,6 @@ class LanguageController extends Controller
 {
     //
     public function chooser(){
-    	//echo Input::get('locale');
     	\Session::put('locale',Input::get('locale'));
     	return redirect()->back();
 	}
