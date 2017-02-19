@@ -13,7 +13,7 @@ class Create extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,10 @@ class Create extends FormRequest
     public function rules()
     {
         return [
-            //
+           //
             'first_name'=>'required|max:128|min:2',
             'last_name'=>'required|max:128|min:2',
-            'email'=>'email|max:128|min:6',
+            'email'=>'email|max:128|min:5',
 
         ];
     }

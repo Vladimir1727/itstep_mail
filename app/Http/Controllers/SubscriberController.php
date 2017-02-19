@@ -45,7 +45,7 @@ class SubscriberController extends Controller
         //print_r($request->only(['first_name']));//возвращает выбранные поля
         //print_r($request->except(['first_name']));//возвращает всё кроме выбранного поля
         
-        $this->validator($request->all())->validate();
+        /*$this->validator($request->all())->validate();*/
 
         SubscriberModel::create([
             'user_id'=>\Auth::user()->id,
@@ -94,11 +94,10 @@ class SubscriberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateRequest $request, $id)
     {
         
         $Subscriber=SubscriberModel::find($id);
-        echo $request->get('first_name');
         $Subscriber['first_name']=$request->get('first_name');
         $Subscriber['last_name']=$request->get('last_name');
         $Subscriber['email']=$request->get('email');
@@ -125,11 +124,11 @@ class SubscriberController extends Controller
         return view('subscribers.list',$data);
     }
 
-    protected function validator(array $data){//ручной  валидотор
+    /*protected function validator(array $data){//ручной  валидотор
         return \Validator::make($data,[
             'first_name'=>'required|max:128|min:2',
             'last_name'=>'required|max:128|min:2',
             'email'=>'required|email|max:256'
         ]);
-    }
+    }*/
 }

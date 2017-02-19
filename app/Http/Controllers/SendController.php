@@ -5,12 +5,10 @@ namespace itstep\Http\Controllers;
 use Illuminate\Http\Request;
 use itstep\Mail\Test as TestMail;
 use itstep\Models\EmailSendSettingsModel as Settings;
-<<<<<<< HEAD
-=======
 use itstep\User as UserModel;
 use itstep\Models\ListModel;
 use itstep\Jobs\SendEmail as SendEmailJob;
->>>>>>> master
+
 
 class SendController extends Controller
 {

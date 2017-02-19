@@ -12,9 +12,7 @@ class settings extends Seeder
     public function run()
     {
         //
-<<<<<<< HEAD
-        DB::table('email_send_types')->insert([['type'=>'PHP'],['type'=>'SMTP'],['type'=>'Mandrill']]);
-=======
+
         DB::table('email_send_types')->delete();
         $data=[
             ['type'=>'log'],
@@ -22,6 +20,5 @@ class settings extends Seeder
             ['type'=>'Mandrill']
         ];
         DB::table('email_send_types')->insert($data);
->>>>>>> master
     }
 }
