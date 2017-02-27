@@ -15,7 +15,7 @@ class SendController extends Controller
     //
     public function form(){
         $lists=UserModel::find(\Auth::user()->id)->lists()->get();
-    	return view('send.form',['lists'=>$lists]);
+        return view('send.form',['lists'=>$lists]);
     }
 
     public function send(Request $request){
@@ -29,7 +29,8 @@ class SendController extends Controller
 
     public function showsettings(){
         $types=\DB::table('email_send_types')->get();
-        return view('send.settings',['types'=>$types]);
+        $setting=Settings::where('user_id',\Auth::id())->first()->type()->value('type');
+        return view('send.settings',['types'=>$types,'setting'=>$setting]);
     }
 
     public function setsettings(Request $request){

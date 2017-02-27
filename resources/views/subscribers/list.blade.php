@@ -4,7 +4,12 @@
 @section('content')
 <div class="row">
 	<div class="col-md-2">
-		@include('subscribers.menu')
+		<div class="btn-group-vertical">
+			<a href="{{url('/subscriber/list') }}" class="btn btn-default">{{trans('app.subscribers')}}</a>
+			<a href="{{url('/lists') }}" class="btn btn-default">{{trans('app.lists')}}</a>
+			<a href="{{url('/send-email')}}" class="btn btn-default">{{trans('app.send')}} e-mail</a>
+			<a href="{{url('/settings')}}" class="btn btn-default">{{trans('app.settings')}}</a>
+		</div>
 	</div>
 	<div class="col-md-9">
 		<h1>{{trans('subscribers.title')}}</h1>

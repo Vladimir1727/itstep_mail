@@ -57,7 +57,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <form method="POST" action="{{URL::route('language-chooser')}}" {{\App::isLocale('en') ? ' class=hidden':''}}>
+
+                            <form method="POST" action="{{URL::route('language-chooser')}}" {{(\App::isLocale('en') || \App::getLocale()==null) ? ' class=hidden':''}}>
                                 {{csrf_field()}}
                                 <input type="hidden" name="locale" value="en">
                                 <input type="submit" value="EN" class="btn btn-default btn-xs">

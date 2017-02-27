@@ -12,7 +12,12 @@
             <label for="type"  class="input-group-addon">{{trans('send.type')}}</label>
             <select name="type" id="type" class="form-control">
               @foreach ($types as $type)
-                <option value="{{$type->id}}">{{$type->type}}</option>
+                
+                @if ($setting==$type->type)
+                  <option value="{{$type->id}}" selected>{{$type->type}}</option>
+                @else
+                  <option value="{{$type->id}}">{{$type->type}}</option>
+                @endif
               @endforeach
             </select>
           </div>
